@@ -23,23 +23,12 @@ pip install pandas numpy scikit-learn matplotlib
 python main.py
 ```
 
-2. Use the interactive menu to:
-
-Follow steps 1→5 before exporting reports (option 6).
-
-## Included Files
-
 
 ## Output
 
 Running the full pipeline (through option 5) will produce a processed dataframe assigned to `final_df` in the code and, when exporting reports (option 6), will trigger `ReportGenerator` which writes summary reports and CSVs (see `flagged_transactions.csv` and `customer_risk_summary.csv`).
 
-## Notes & Next Steps
 
-
-## License
-
-Add your license or usage terms here.
 # 🕵️ Financial Fraud Detection System
 
 ## 📌 Project Overview
