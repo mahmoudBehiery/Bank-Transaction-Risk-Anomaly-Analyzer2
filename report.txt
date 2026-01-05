@@ -1,0 +1,25 @@
+==========================================
+      BANK TRANSACTION RISK REPORT        
+==========================================
+
+1. OVERALL STATISTICS:
+- Total Transactions Scanned: 6362604
+- Suspicious Transactions Found: 314301
+
+2. RISK BAND DISTRIBUTION:
+risk_band
+Low         6022320
+Critical     340284
+
+3. TOP 10 RISKY CUSTOMERS:
+Customer_ID  Max_Risk_Score  Total_amount  Transaction_Count Primary_Risk_Band
+C1732528482           100.0    5326409.69                  1          Critical
+ C404412818           100.0   10000000.00                  1          Critical
+C2064604875           100.0    4158913.05                  1          Critical
+ C693866300           100.0   10000000.00                  1          Critical
+C1732497268           100.0    3918582.04                  1          Critical
+C1237933058           100.0   18040298.52                  1          Critical
+ C404353078           100.0    6924177.08                  1          Critical
+ C190370292           100.0    9059623.39                  1          Critical
+C1237909198           100.0    4071396.27                  1          Critical
+ C404452529           100.0    6772657.33                  1          Critical
