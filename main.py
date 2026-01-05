@@ -1,9 +1,9 @@
-from Dataloading import DataManager
-from Datacleaning import TransactionCleaner
-from preparefeatures import FeatureBuilder
-from risk_scores import RiskScorer
-from TransactionFlagger import TransactionFlagger
-from Reports import ReportGenerator
+from src.Dataloading import DataManager
+from src.Datacleaning import TransactionCleaner
+from src.preparefeatures import FeatureBuilder
+from src.risk_scores import RiskScorer
+from src.TransactionFlagger import TransactionFlagger
+from Reports.generate_report import ReportGenerator
 
 
 df = None
