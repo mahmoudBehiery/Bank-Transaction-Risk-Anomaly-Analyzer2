@@ -1,103 +1,156 @@
-# Bank Transaction Risk & Anomaly Analyzer
+# 🕵️ Bank Transaction Risk & Anomaly Analyzer
 
-Small CLI tool to load, clean, feature-engineer, score and flag suspicious bank/credit-card transactions.
+A Python-based CLI pipeline for identifying suspicious financial transactions using statistical anomaly detection and custom risk scoring.
 
-## Summary
+---
 
-This project processes transaction datasets to compute customer risk scores and flag suspicious transactions. It provides a simple menu-driven CLI (`main.py`) that walks through steps: load data, clean data, build features, compute risk scores, flag suspicious transactions, and export reports.
+## 📋 Overview
 
-## Prerequisites
+This system automates the detection of high-risk and anomalous transactions in banking datasets. It processes raw transaction logs through a multi-stage pipeline:
 
+1. **Data Loading** — Import transaction CSVs
+2. **Data Cleaning** — Normalize and validate records
+3. **Feature Engineering** — Create derived signals
+4. **Risk Scoring** — Compute 0–100 risk scores per customer
+5. **Transaction Flagging** — Mark suspicious transactions
+6. **Report Generation** — Export CSVs and summaries
 
-Install dependencies (example):
+### Key Features
+- **Z-Score Analysis** — Detect statistical outliers in transaction amounts
+- **Risk Banding** — Categorize customers into Low, Medium, High, and Critical tiers
+- **Interactive Menu** — User-friendly CLI for running the pipeline step-by-step
+- **CSV Export** — Generate structured reports for compliance and review
 
-```bash
-pip install pandas numpy scikit-learn matplotlib
-```
+---
 
-## Usage
+## 🚀 Quick Start
 
-1. From the repository root run:
-
-```bash
-python main.py
-```
-
-
-## Output
-
-Running the full pipeline (through option 5) will produce a processed dataframe assigned to `final_df` in the code and, when exporting reports (option 6), will trigger `ReportGenerator` which writes summary reports and CSVs (see `flagged_transactions.csv` and `customer_risk_summary.csv`).
-
-
-# 🕵️ Financial Fraud Detection System
-
-## 📌 Project Overview
-Automated pipeline for identifying suspicious financial transactions using **Z-Score** and custom risk logic.
-
-## 🛠 Methodology
-* **Z-Score Analysis:** To detect statistical outliers in transaction amounts.
-* **Risk Scoring:** Assigning a 0-100 score based on type and magnitude.
-* **Banding:** Categorizing users into Low, Medium, High, and Critical.
-
-## 📊 Outputs
-* `flagged_transactions.csv`: List of all flagged alerts.
-* `customer_risk_summary.csv`: Final risk report per customer.
-# Bank Transaction Risk & Anomaly Analyzer
-
-Small pipeline for loading, cleaning, feature engineering, scoring, and flagging suspicious bank/credit-card transactions.
-
-## Quick summary
-
-This repository provides an interactive CLI (`main.py`) and supporting modules under `src/` to process transaction logs, compute per-customer risk scores, and export flagged transactions and summary reports.
-
-## Prerequisites
-
+### Prerequisites
 - Python 3.8 or newer
-- Recommended packages: `pandas`, `numpy`, `scikit-learn`, `matplotlib`
+- Virtual environment (optional but recommended)
 
-Install the main dependencies quickly (example):
-
+### Setup
 ```bash
+# Clone or navigate to the project directory
+cd "Bank Transaction Risk & Anomaly Analyzer"
+
+# Create and activate a virtual environment (Windows)
 python -m venv venv
-venv\Scripts\activate      # Windows
+venv\Scripts\activate
+
+# Install dependencies
 pip install pandas numpy scikit-learn matplotlib
 ```
 
-If you prefer a `requirements.txt`, create one from your environment with `pip freeze > requirements.txt`.
-
-## Quick start
-
-From the repository root run the interactive pipeline:
-
+### Run the Pipeline
 ```bash
 python main.py
 ```
 
-Common actions in the interactive menu:
-- Load dataset
-- Clean / normalize transactions
-- Build features
-- Compute risk scores
-- Flag suspicious transactions
-- Export reports (CSV)
+Then follow the interactive menu:
+- Press `1` to load dataset
+- Press `2` to clean data
+- Press `3` to build features
+- Press `4` to score customers
+- Press `5` to flag suspicious transactions
+- Press `6` to export reports
+- Press `7` for a quick console summary
+- Press `0` to exit
 
-You can also generate the textual report directly with:
-
+### Generate a Text Report
 ```bash
 python Reports/generate_report.py
 ```
 
-## Project layout
+---
 
-- `main.py` — Interactive entrypoint (repository root).
-- `src/` — Processing modules:
-	- `Dataloading.py` — Helpers to load CSVs from `data/`.
-	- `Datacleaning.py` — Data cleaning utilities.
-	- `preparefeatures.py` — Feature engineering functions.
-	- `risk_scores.py` — Risk scoring algorithms.
-	- `TransactionFlagger.py` — Rules to flag suspicious transactions.
-- `data/` — Raw/example input data (e.g. `PS_20174392719_1491204439457_log.csv`).
-- `data_generated/` — CSV outputs produced by the pipeline (`flagged_transactions.csv`, `customer_risk_summary.csv`).
+## 📁 Project Structure
+
+```
+Bank Transaction Risk & Anomaly Analyzer/
+├── main.py                          # Interactive CLI entrypoint
+├── README.md                        # This file
+├── data/
+│   └── PS_20174392719_1491204439457_log.csv    # Raw transaction data
+├── data_generated/
+│   ├── flagged_transactions.csv     # Output: all flagged transactions
+│   └── customer_risk_summary.csv    # Output: per-customer risk scores
+├── src/
+│   ├── Dataloading.py               # Load and read CSVs
+│   ├── Datacleaning.py              # Cleaning utilities
+│   ├── preparefeatures.py           # Feature engineering
+│   ├── risk_scores.py               # Risk scoring logic
+│   └── TransactionFlagger.py        # Flagging rules and logic
+└── Reports/
+    ├── generate_report.py           # Text report generator
+    └── report.txt                   # Generated report output
+```
+
+---
+
+## 📊 Outputs
+
+After running the full pipeline, you'll get:
+
+| File | Description |
+|------|-------------|
+| `data_generated/flagged_transactions.csv` | All transactions marked as suspicious (includes risk scores and reasons) |
+| `data_generated/customer_risk_summary.csv` | One row per customer with aggregated risk score and risk band |
+| `Reports/report.txt` | Human-readable text summary of the analysis |
+
+---
+
+## 🔧 Methodology
+
+### Risk Scoring
+Each transaction is assigned a risk score (0–100) based on:
+- Transaction amount and frequency patterns
+- Deviation from customer baseline (Z-Score)
+- Transaction type and associated risk factors
+
+### Risk Bands
+Customers are categorized into tiers:
+- **Low** (0–25)
+- **Medium** (26–50)
+- **High** (51–75)
+- **Critical** (76–100)
+
+---
+
+## 📦 Dependencies
+
+- **pandas** — Data manipulation and CSV I/O
+- **numpy** — Numerical computations
+- **scikit-learn** — Machine learning utilities
+- **matplotlib** — Visualization (optional)
+
+To generate `requirements.txt`:
+```bash
+pip freeze > requirements.txt
+```
+
+---
+
+## 💡 Next Steps
+
+- [ ] Add unit tests for scoring and flagging modules
+- [ ] Create a non-interactive CLI mode (command-line arguments)
+- [ ] Add more sophisticated anomaly detection (Isolation Forest, LOF)
+- [ ] Containerize with Docker for reproducible runs
+- [ ] Add data validation and error handling
+- [ ] Generate visual dashboards (Plotly, Tableau)
+
+---
+
+## 📝 License
+
+Add your license or usage terms here.
+
+---
+
+## 📧 Contact
+
+For questions or issues, contact the development team.
 - `Reports/` — Report generation scripts (e.g. `generate_report.py`) and text reports.
 
 ## Notes on outputs
